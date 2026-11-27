@@ -22,7 +22,7 @@ Claude Code reads `.claude/settings.json` when the project hooks are trusted. Th
 printf '%s\n' '{"tool_input":{"file_path":"firmware/temperature.c"}}' | python3 scripts/post_edit.py
 ```
 
-The unfinished decoder produces exit 2 from this hook. Changing a Markdown file skips the build. CI invokes the underlying checks independently of the editor.
+The working decoder produces exit 0. A failing firmware test produces exit 2. Changing a Markdown file skips the build. CI invokes the underlying checks independently of the editor.
 
 ## Query the database and MCP tools
 
