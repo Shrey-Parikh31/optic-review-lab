@@ -1,0 +1,265 @@
+{
+  "model": "gpt-6.2-sol",
+  "effort": "medium",
+  "fixture_sha256": "d723fd6cc1e73d65ed1ca11a0ae2bc4437ca579bd3d1fd10ec4c581a4a51041f",
+  "cli": "codex-cli 0.171.0-alpha.13.2",
+  "seed": 31,
+  "rows": [
+    {
+      "id": "H05",
+      "mode": "baseline",
+      "verdict": "flag",
+      "evidence": "With old = 1 and temp = 75, the proposed code returns 0. The alarm must stay active at 75 C.",
+      "seconds": 5.471,
+      "usage": {
+        "input_tokens": 17186,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 48,
+        "reasoning_output_tokens": 0
+      },
+      "prompt_sha256": "973a44b266b4575761bd43af727ac790f2c61847925b6e444f1a494ee8308014"
+    },
+    {
+      "id": "H05",
+      "mode": "with-rule",
+      "verdict": "flag",
+      "evidence": "With old = 1 and temp = 75, the proposed code returns 0. The contract requires the alarm to stay latched at 75 C and clear only below 75 C.",
+      "seconds": 4.891,
+      "usage": {
+        "input_tokens": 17203,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 82,
+        "reasoning_output_tokens": 21
+      },
+      "prompt_sha256": "c4d75507c641612e29a676005b58d80a313275303364d6f0699770679863db37"
+    },
+    {
+      "id": "H06",
+      "mode": "with-rule",
+      "verdict": "pass",
+      "evidence": "The mask limits the XOR to bits 5..4, setting them to the shifted lane and preserving every other bit. At the boundary reg = 0xFF and lane = 0, the result is 0xCF.",
+      "seconds": 18.515,
+      "usage": {
+        "input_tokens": 17206,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 105,
+        "reasoning_output_tokens": 36
+      },
+      "prompt_sha256": "beaebddabe90ae212a140c312ddf84cc915184f007cba2aa9615221d612db50f"
+    },
+    {
+      "id": "H06",
+      "mode": "baseline",
+      "verdict": "pass",
+      "evidence": "The mask 0x30 restricts the XOR to bits 5 and 4, where it flips exactly the bits that differ from the shifted lane.",
+      "seconds": 4.567,
+      "usage": {
+        "input_tokens": 17183,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 51,
+        "reasoning_output_tokens": 0
+      },
+      "prompt_sha256": "d70e1e4224c75c6661052b591e2bfdb24634bd6798734e1779663c5f84b1aeb6"
+    },
+    {
+      "id": "H03",
+      "mode": "baseline",
+      "verdict": "flag",
+      "evidence": "For -50 centidegrees, the proposed function returns 0. The contract requires -1 because exact halves round away from zero.",
+      "seconds": 4.851,
+      "usage": {
+        "input_tokens": 17181,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 47,
+        "reasoning_output_tokens": 0
+      },
+      "prompt_sha256": "24b69a8bd57d2a08f0e77d041bfffc0c301a0b329a655446e4d47662576b39d2"
+    },
+    {
+      "id": "H03",
+      "mode": "with-rule",
+      "verdict": "flag",
+      "evidence": "At -50 centidegrees, the proposed expression returns 0, but the exact half degree must round away from zero to -1.",
+      "seconds": 4.275,
+      "usage": {
+        "input_tokens": 17200,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 48,
+        "reasoning_output_tokens": 0
+      },
+      "prompt_sha256": "4f1f8d718104b840aa563c090eb4c7b095344c2b92ab7d9c8c5fcbcc4193fb81"
+    },
+    {
+      "id": "H02",
+      "mode": "with-rule",
+      "verdict": "pass",
+      "evidence": "Conversion to uint16_t reduces the difference modulo 65536 whether subtraction is signed or unsigned. At the wrap boundary, prev = 65535 and now = 0 return 1 tick.",
+      "seconds": 5.741,
+      "usage": {
+        "input_tokens": 17193,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 108,
+        "reasoning_output_tokens": 47
+      },
+      "prompt_sha256": "613956fd7b690c0df5d54235279b28bb63b44e38c601e86d84a16b89d987d6b5"
+    },
+    {
+      "id": "H02",
+      "mode": "baseline",
+      "verdict": "pass",
+      "evidence": "Casting the difference to uint16_t yields (now \u2212 prev) modulo 65536, including when the counter wraps.",
+      "seconds": 5.28,
+      "usage": {
+        "input_tokens": 17176,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 87,
+        "reasoning_output_tokens": 41
+      },
+      "prompt_sha256": "6795acbaf2483865cf8d4e14798050e1cf89ac76b0f612247d8170a1c973bf83"
+    },
+    {
+      "id": "H07",
+      "mode": "baseline",
+      "verdict": "flag",
+      "evidence": "With valid=1, sample=0, and prev=7, the function returns 7 instead of replacing it with 0.",
+      "seconds": 4.659,
+      "usage": {
+        "input_tokens": 17172,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 47,
+        "reasoning_output_tokens": 0
+      },
+      "prompt_sha256": "a44db5ad61b721cbe979e1c7677c9b1265e97942bd6403379fcc3877c0278011"
+    },
+    {
+      "id": "H07",
+      "mode": "with-rule",
+      "verdict": "flag",
+      "evidence": "With valid=1, sample=0, and prev=42, the new expression returns 42 instead of replacing it with 0. Failed reads still preserve prev. The samples are unsigned whole bytes from 0 to 255, with no fractional values.",
+      "seconds": 7.043,
+      "usage": {
+        "input_tokens": 17191,
+        "cached_input_tokens": 16256,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 72,
+        "reasoning_output_tokens": 0
+      },
+      "prompt_sha256": "8e5d363e2b2bd0447d884099307ddc460302190d8602a57822284e1efec4f556"
+    },
+    {
+      "id": "H08",
+      "mode": "with-rule",
+      "verdict": "pass",
+      "evidence": "The shared bits contribute a & b, and the differing bits contribute floor((a ^ b)/2). All intermediates stay within 0\u201365535 under C11 integer promotions. For 65535 and 65534, the result is 65534, rounding 65534.5 down. The function performs no reads that can fail.",
+      "seconds": 6.599,
+      "usage": {
+        "input_tokens": 17191,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 137,
+        "reasoning_output_tokens": 45
+      },
+      "prompt_sha256": "82e8063453c78f4652d17214c7f15b18c6e78d2c223a2fcb1d3a75c05ff9dcc2"
+    },
+    {
+      "id": "H08",
+      "mode": "baseline",
+      "verdict": "pass",
+      "evidence": "For every input pair, a + b equals 2(a & b) + (a ^ b) mathematically. The right shift halves the XOR and rounds down, and the resulting mean fits in uint16_t.",
+      "seconds": 5.485,
+      "usage": {
+        "input_tokens": 17172,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 87,
+        "reasoning_output_tokens": 21
+      },
+      "prompt_sha256": "c1b9168a12a7eb063d9528ae73e72d12a86907e521f75d3940ecd699ccae3d5e"
+    },
+    {
+      "id": "H04",
+      "mode": "baseline",
+      "verdict": "pass",
+      "evidence": "The expression returns 1 exactly when ok is 0 and retries is 0 or 1.",
+      "seconds": 4.466,
+      "usage": {
+        "input_tokens": 17172,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 40,
+        "reasoning_output_tokens": 0
+      },
+      "prompt_sha256": "df6eb04d22f85755e304cc48d0405f6c2608da3497fe854c1b4b3eb0c1fe57f9"
+    },
+    {
+      "id": "H04",
+      "mode": "with-rule",
+      "verdict": "pass",
+      "evidence": "A failed read (ok=0) returns 1 at retries 0 and 1, then 0 at the upper bound of 2. Every nonzero int ok returns 0, including negative values. The retry count is unsigned and has no fractional units.",
+      "seconds": 5.486,
+      "usage": {
+        "input_tokens": 17189,
+        "cached_input_tokens": 16256,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 74,
+        "reasoning_output_tokens": 0
+      },
+      "prompt_sha256": "efe299bd6f95b716e8d62b60c4ffe511fff8a7a77dfb732b2f3df7c9e16b51d4"
+    },
+    {
+      "id": "H01",
+      "mode": "with-rule",
+      "verdict": "flag",
+      "evidence": "At code 2048, XOR clears bit 11, so the function returns \u22122048 instead of the required zero.",
+      "seconds": 6.077,
+      "usage": {
+        "input_tokens": 16249,
+        "cached_input_tokens": 11136,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 92,
+        "reasoning_output_tokens": 45
+      },
+      "prompt_sha256": "427f1e088e97bc9f9365db418990cc416c548d19fa1fce1c2d3f9c0eafe7791b"
+    },
+    {
+      "id": "H01",
+      "mode": "baseline",
+      "verdict": "flag",
+      "evidence": "For input 2048, XOR clears bit 11, so the function returns -2048 instead of the required zero.",
+      "seconds": 4.292,
+      "usage": {
+        "input_tokens": 17166,
+        "cached_input_tokens": 16256,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 45,
+        "reasoning_output_tokens": 0
+      },
+      "prompt_sha256": "a381d7844fd6ae37ea63d1f46c23716263e6a46b5c8583190a08067099d00fa5"
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "faults": 4,
+      "controls": 4,
+      "misses": 0,
+      "false_alarms": 0,
+      "median_seconds": 4.755
+    },
+    "with-rule": {
+      "faults": 4,
+      "controls": 4,
+      "misses": 0,
+      "false_alarms": 0,
+      "median_seconds": 5.909
+    }
+  }
+}

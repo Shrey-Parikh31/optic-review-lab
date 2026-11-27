@@ -8,6 +8,10 @@ Optic Review Lab checks AI-assisted C changes to optical-module telemetry. It ru
 2. Read [the fix and its sixth test](https://github.com/Shrey-Parikh31/optic-review-lab/pull/1). The smallest negative reading is −1/256 °C. Integer division turns it into zero. [All six cases passed on the corrected revision.](https://github.com/Shrey-Parikh31/optic-review-lab/actions/runs/45956301996)
 3. Inspect the [review-tooling run](https://github.com/Shrey-Parikh31/optic-review-lab/actions/runs/45956301962). On six fixed C examples, compilation alone missed all three defects. The guarded checks caught all three and accepted all three clean controls. The same run imported the PR into PostgreSQL and reported `review_pending` because no independent engineer had approved that revision.
 
+## Live model comparison
+
+On eight fresh C patches, a live reviewer caught all four defects and accepted all four clean controls under both prompts. Median review time was 4.76 seconds for the baseline and 5.91 seconds with the firmware rule. [Experiment, individual answers and reproduction command](eval/heldout_v1/README.md)
+
 ## Run the firmware tests
 
 From the repository root, run `bash scripts/check.sh` with Bash and a C11 compiler such as Clang or GCC. The expected result is `6/6 temperature cases passed`. On Windows, use WSL.

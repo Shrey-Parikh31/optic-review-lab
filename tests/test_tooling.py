@@ -9,11 +9,25 @@ from unittest.mock import patch
 from lab.analyze import check, RULE
 from lab.evaluate import CASES, score, task
 from lab.model_review import review
+from lab import heldout
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class ToolingTests(unittest.TestCase):
+    def test_heldout_oracles_and_prompt_pairing(self):
+        cases = json.loads(heldout.FIXTURES.read_text())
+        self.assertEqual(len({case["id"] for case in cases}), 8)
+        self.assertEqual(sum(case["defect"] is not None for case in cases), 4)
+        heldout.validate(cases)
+        for case in cases:
+            baseline = heldout.prompt_for(case, "baseline")
+            guided = heldout.prompt_for(case, "with-rule")
+            self.assertEqual(guided.replace(" " + heldout.RULE, "", 1), baseline)
+            self.assertNotIn(case["id"], baseline)
+            if case["defect"]:
+                self.assertNotIn(case["defect"], baseline)
+
     def test_model_inputs_and_response(self):
         public = task(CASES[0])
         self.assertEqual(set(public), {"id", "candidate", "contract"})
