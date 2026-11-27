@@ -1,0 +1,44 @@
+[
+  {
+    "id": "m01",
+    "task": "range",
+    "body": "(void)supported; return raw == 65535;",
+    "faulty": true,
+    "defect": "signed range"
+  },
+  {
+    "id": "m02",
+    "task": "range",
+    "body": "(void)supported; return raw == -1;",
+    "faulty": false,
+    "defect": ""
+  },
+  {
+    "id": "m03",
+    "task": "availability",
+    "body": "return read_ok && supported ? 1 : 0;",
+    "faulty": true,
+    "defect": "failed read treated as unsupported"
+  },
+  {
+    "id": "m04",
+    "task": "availability",
+    "body": "if (!read_ok) return -1;\n    return supported ? 1 : 0;",
+    "faulty": false,
+    "defect": ""
+  },
+  {
+    "id": "m05",
+    "task": "millivolts",
+    "body": "return (double)(mv / 1000);",
+    "faulty": true,
+    "defect": "integer division loses fractional volts"
+  },
+  {
+    "id": "m06",
+    "task": "millivolts",
+    "body": "return mv / 1000.0;",
+    "faulty": false,
+    "defect": ""
+  }
+]

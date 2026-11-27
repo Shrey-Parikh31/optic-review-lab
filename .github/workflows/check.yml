@@ -12,5 +12,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Check integer comparisons
+        run: python3 -m lab.analyze firmware/*.c
       - name: Compile C and check temperature samples
         run: bash scripts/check.sh

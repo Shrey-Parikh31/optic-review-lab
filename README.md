@@ -20,8 +20,10 @@ The starter compiles and prints `0/5 temperature cases passed`. Exit status 1 is
 
 The exercise assumes a supported temperature field on a ready module. A later exercise introduces a read failure and a retry. The byte fixtures run on your computer. Testing sensor accuracy, electrical behavior or link throughput requires a physical setup. [OIF CMIS 5.3, sections 8.1.3.5 and 8.2.5](https://www.oiforum.com/wp-content/uploads/OIF-CMIS-05.3.pdf)
 
-## What is here
+## Run the working review tools
 
-The starter includes the C interface, five test vectors, a Bash build-and-test command, a GitHub Actions workflow for pull requests and manual runs, and a review template. You own the decoder and the later milestones. PostgreSQL, the static rule, the hook, the evaluation runner and the MCP tools are planned exercises.
+Run `bash scripts/tooling.sh` for the analyzer, hook tests, simulated capability reads and the six-case evaluation. It runs independently of the unfinished temperature decoder. The tooling CI job also starts PostgreSQL 16 and exercises both read-only MCP tools over stdio.
 
-Read the [problem research](docs/problem.md) for the Razorpay inspiration and the upstream SONiC case. Follow the [implementation roadmap](ROADMAP.md) one pull request at a time.
+The review database records the PR head, workflow attempt, reviewer identity and reviewed SHA. The release query reports whether the last captured GitHub evidence supports that exact revision. The fixture demo imports measured evaluation results alongside synthetic review history.
+
+See the [setup and commands](docs/run-the-lab.md), [learning roadmap](ROADMAP.md) and [problem research](docs/problem.md).
