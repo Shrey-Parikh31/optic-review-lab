@@ -7,7 +7,7 @@ An engineer reviewing an AI-assisted change to optical module firmware needs to 
 You need Bash, Git and a C11 compiler such as Clang or GCC. On Windows, use WSL with GCC or Clang. Run these commands inside the repository:
 
 ```bash
-git switch -c lab/temperature-decoder
+git switch lab/temperature-decoder
 bash scripts/check.sh
 ```
 
@@ -19,6 +19,14 @@ The starter compiles and prints `0/5 temperature cases passed`. Exit status 1 is
 4. Commit your fix and open a pull request. Include one failing input from the experiment and the CI run for the corrected patch. An agent reviewing your work should follow [the lab instructions](AGENTS.md).
 
 The exercise assumes a supported temperature field on a ready module. A later exercise introduces a read failure and a retry. The byte fixtures run on your computer. Testing sensor accuracy, electrical behavior or link throughput requires a physical setup. [OIF CMIS 5.3, sections 8.1.3.5 and 8.2.5](https://www.oiforum.com/wp-content/uploads/OIF-CMIS-05.3.pdf)
+
+## Lab 1 review notes
+
+This branch is ready for the decoder implementation. Include your answers in the pull request when the tests pass.
+
+- What signed count does `FF 80` represent before converting to Celsius?
+- Which additional two-byte input did you choose, and what error would it catch?
+- Which line of the CI output shows that your fix ran?
 
 ## Run the working review tools
 
