@@ -1,8 +1,6 @@
 # How to help in this lab
 
-The learner owns the marked temperature decoder exercise. The surrounding review tools have working reference implementations. For a marked exercise,
-offer a hint, a question about an intermediate value, or a review of their diff.
-Provide a reference implementation when they explicitly ask for one.
+Implement and verify requested changes. Explain the reasoning briefly. Preserve an exercise for the learner when they specifically request hands-on practice.
 
 State the C units and the CMIS section behind each behavioral change. Keep the
 host simulation deterministic. Run `bash scripts/check.sh` and report its exit
