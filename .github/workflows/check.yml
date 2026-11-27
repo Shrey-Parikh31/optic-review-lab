@@ -1,0 +1,16 @@
+name: Firmware checks
+on: [pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  temperature:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compile C and check temperature samples
+        run: bash scripts/check.sh
