@@ -1,6 +1,12 @@
 # Optic Review Lab
 
-An engineer reviewing an AI-assisted change to optical module firmware needs to know whether the code still interprets telemetry correctly. This lab starts with a two-byte temperature reading from the Common Management Interface Specification (CMIS). The eventual review record should let a second engineer reproduce the failure, see which revision fixed it and find the human decision on that revision.
+Optic Review Lab checks AI-assisted C changes to optical-module telemetry. It runs a Clang diagnostic and behavioral tests in GitHub Actions, records review evidence for each commit in PostgreSQL, and exposes the results through two read-only MCP tools.
+
+## See a review in one minute
+
+1. Open the [original failing firmware run](https://github.com/Shrey-Parikh31/optic-review-lab/actions/runs/45927535041). The unimplemented decoder passed 0 of 5 temperature cases.
+2. Read [the fix and its sixth test](https://github.com/Shrey-Parikh31/optic-review-lab/pull/1). The smallest negative reading is −1/256 °C. Integer division turns it into zero. [All six cases passed on the corrected revision.](https://github.com/Shrey-Parikh31/optic-review-lab/actions/runs/45956301996)
+3. Inspect the [review-tooling run](https://github.com/Shrey-Parikh31/optic-review-lab/actions/runs/45956301962). On six fixed C examples, compilation alone missed all three defects. The guarded checks caught all three and accepted all three clean controls. The same run imported the PR into PostgreSQL and reported `review_pending` because no independent engineer had approved that revision.
 
 ## Run the firmware tests
 
